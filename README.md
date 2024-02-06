@@ -30,7 +30,6 @@ cd ~/ws_rmw_zenoh
 rosdep install --from-paths src --ignore-src --rosdistro <DISTRO> -y # replace <DISTRO> with ROS 2 distro of choice
 source /opt/ros/<DISTRO>/setup.bash # replace <DISTRO> with ROS 2 distro of choice
 colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
-
 ```
 
 ## Test
@@ -56,7 +55,6 @@ ros2 run rmw_zenoh_cpp init_rmw_zenoh_router
 export RMW_IMPLEMENTATION=rmw_zenoh_cpp
 ros2 run demo_nodes_cpp talker
 ```
-> Note: Ignore all the warning printouts.
 
 ### Run the `listener`
 ```bash
@@ -66,10 +64,9 @@ ros2 run demo_nodes_cpp listener
 ```
 
 The listener node should start receiving messages over the `/chatter` topic.
-> Note: Ignore all the warning printouts.
 
 ### Graph introspection
-Presently we only support limited `ros2cli` commands to introspect the ROS graph such as `ros2 node list` and `ros2 topic list`.
+Most `ros2` introspection commands should work, like `ros2 topic info -v` and `ros2 node -v`.
 
 ## Config
 The [default configuration](rmw_zenoh_cpp/config/DEFAULT_RMW_ZENOH_SESSION_CONFIG.json5) sets up the zenoh sessions with the following main characteristics:
@@ -83,11 +80,3 @@ Table:
 
 This assumes that there is a `zenohd` running in the system at port 7447.
 A custom configuration may be provided by setting the `RMW_ZENOH_CONFIG_FILE` environment variable to point to a custom zenoh configuration file.
-
-
-## TODO Features
-- [x] Publisher
-- [x] Subscription
-- [ ] Client
-- [ ] Service
-- [ ] Graph introspection
